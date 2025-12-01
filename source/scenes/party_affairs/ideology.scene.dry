@@ -3,9 +3,8 @@ new-page: true
 is-card: true
 tags: party_affairs
 view-if: ideology_timer = 0
-on-arrival: week_actions += 1; old_ideology = ideology; ideology_timer = 5
+on-arrival: old_ideology = ideology; ideology_timer = 5
 card-image: img/Ideology.jpg
-max-visits: 8
 
 = Questions of Ideology
 
@@ -28,7 +27,7 @@ if (Q.ideology && Q.ideology != "left") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "left"; communist_strength += 10; communist_dissent -= 5; ldr_relation -= 3; ul_relation -= 5; ldr_moderates -= 0.2; socialist_sentiment += 2*(1-dissent); radicalisation += 0.1;
+on-departure: ideology = "left"; communist_strength += 20; communist_dissent -= 20; socialist_sentiment += 5; radicalisation += 0.1;
 
 The radical left of the party supports a course of class struggle, and violent revolution.
 
@@ -39,7 +38,7 @@ if (Q.ideology && Q.ideology != "centrist") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "centrist"; maximalist_strength += 10; maximalist_dissent -= 10; communist_dissent -= 5; reformist_dissent -= 5
+on-departure: ideology = "centrist"; maximalist_strength += 20; maximalist_dissent -= 20; communist_dissent -= 20; reformist_dissent -= 20
 
 The Center Marxists, represented by Serrati's faction, support a middle course of preparing for revolution while building up the consciousness of the working class.
 
@@ -50,7 +49,7 @@ if (Q.ideology && Q.ideology != "labour") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "labour"; labour_strength += 10; labour_dissent -= 5; 
+on-departure: ideology = "labour"; labour_strength += 20; labour_dissent -= 20; 
 
 The labour wing of the party supports continued participation in government in order to provide benefits to the workers, and the creation of public works programs for employment.
 
@@ -61,7 +60,7 @@ if (Q.ideology && Q.ideology != "syndicalist") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "syndicalist"; syndicalist_strength += 10; syndicalist_dissent -= 5 if syndicalist_active; 
+on-departure: ideology = "syndicalist"; syndicalist_strength += 20; syndicalist_dissent -= 20;
 
 The minor syndicalist wing of the party supports violent means in order to provide benefits to the workers, such as strikes and factory occupations.
 
@@ -72,7 +71,7 @@ if (Q.ideology && Q.ideology != "reformist") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "reformist"; reformist_strength += 10; democratisation += 1; reformist_dissent -= 5; ldr_relation += 5; ul_relation += 5; republican_sentiment += 3*(1-dissent); radicalisation -= 0.1;
+on-departure: ideology = "reformist"; reformist_strength += 20; democratisation += 5; reformist_dissent -= 20; ldr_relation += 20; ul_relation += 20; republican_sentiment += 5; radicalisation -= 0.1;
 
 The reformist wing of the party seeks to preserve continued participation in government, and is most supportive of coalitions with the other pro-democracy parties.
 
