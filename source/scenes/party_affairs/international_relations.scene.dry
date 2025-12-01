@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: party_affairs
 view-if: international_relations_timer <= 0
-on-arrival: week_actions += 1; international_relations_timer += 6;
+on-arrival: international_relations_timer += 6;
 card-image: img/Comintern.jpg
 max-visits: 12
 #subtitle: Building ties with our fraternal socialist parties.
@@ -26,7 +26,7 @@ At the Labour and Socialist International, we can forge contacts with our frater
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources. (Need 1)
-on-arrival: resources -= 1; entente_relation += 1; reformist_strength += 5; foreign_invasion_time += 6 if violent_revolution; supported_entente += 1;
+on-arrival: resources -= 1; entente_relation += 5; reformist_strength += 5; foreign_invasion_time += 20 if violent_revolution; supported_entente += 5;
 
 The socialists of France and Britain can influence their governments to be friendlier towards Italy.
 
@@ -36,7 +36,7 @@ The socialists of France and Britain can influence their governments to be frien
 subtitle: -1 resources
 choose-if: resources >= 1 and soviet_germany != 1
 unavailable-subtitle: [? if resources < 1 : Not enough resources. (Need 1) ?][? if soviet_germany : The Spartakusbund is no longer under threat. ?]
-on-arrival: communist_strength += 5; radicalisation += 0.3; rg_militancy += 0.04*revolutionary_exhaustion; resources -= 1; pcdi_bordiga += 1;
+on-arrival: communist_strength += 20; radicalisation += 0.5; rg_militancy += 0.05; resources -= 1; pcdi_bordiga += 1;
 
 Germany is in turmoil. With memories of the Spartacist Uprising still fresh, and the Spartacus League higher command under threat from right-wing forces, we can offer them refuge, welcoming them as exiles to Italy and training our forces with their experience in the Spartakusbund.
 
@@ -44,7 +44,7 @@ Germany is in turmoil. With memories of the Spartacist Uprising still fresh, and
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources. (Need 1)
-on-arrival: resources -= 1; soviet_relation += 1; soviet_end_timer -= 1 if not rcw_over; soviet_recovery_timer -= 1 if rcw_over; pcdi_gramsci += 1; supported_ussr += 1; rg_militancy += 0.04*revolutionary_exhaustion if soviet_leader = "Trotsky"
+on-arrival: resources -= 1; soviet_relation += 5; soviet_end_timer -= 5 if not rcw_over; soviet_recovery_timer -= 5 if rcw_over; pcdi_gramsci += 1; supported_ussr += 1; rg_militancy += 0.04
 
 Our efforts are welcomed by the Soviets, and [? if not rcw_over :we aid them in their civil war against the White Army. ?][? if rcw_over :we aid them in their post-war recovery. ?]
 
@@ -54,7 +54,7 @@ Our efforts are welcomed by the Soviets, and [? if not rcw_over :we aid them in 
 subtitle: -2 resources
 choose-if: resources >= 2 and ppi_relation >= 55
 unavailable-subtitle: [? if resources < 2 : Not enough resources. (Need 2) ?][? if ppi_relation < 55 : Our influence within the PPI is too low. ?]
-on-arrival: papal_relation += 1; ppi_relation -= 10; resources -= 2; 
+on-arrival: papal_relation += 5; ppi_relation -= 10; resources -= 2; 
 
 We utilise our influence within the PPI to expand our contact amongst the PPI. We notice an increase in attitude with the Holy See.
 
@@ -62,7 +62,7 @@ We utilise our influence within the PPI to expand our contact amongst the PPI. W
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources. (Need 1)
-on-arrival: resources -= 1; supported_usa += 1;
+on-arrival: resources -= 1; supported_usa += 5;
 
 The Socialist Party of America is tiny and has limited support, especially following their loss in the recent elections. There is not much we can do for them, and conversely, not much they can do for us.
 
@@ -71,6 +71,6 @@ subtitle: -1 resources
 choose-if: resources >= 1
 view-if: year < 1920 and month <= 8
 unavailable-subtitle: Not enough resources. (Need 1)
-on-arrival: resources -= 1; supported_hungary += 1;
+on-arrival: resources -= 1; supported_hungary += 5;
 
 The Hungarian Communists are in an opportune time to seize power, and we can only hope our aid helps them spread the cause further.
