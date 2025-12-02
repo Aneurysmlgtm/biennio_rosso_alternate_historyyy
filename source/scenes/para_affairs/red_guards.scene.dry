@@ -20,7 +20,7 @@ The *Guardie Rosse*, also known as the Red Guards is a paramilitary organisation
 choose-if: para_resources >= rg_militarisation_cost
 unavailable-subtitle: Not enough paramilitary resources ([+ rg_militarisation_cost +] needed).
 subtitle: -[+ rg_militarisation_cost +] paramilitary resources
-on-arrival: para_resources -= rg_militarisation_cost; rg_investment += 1; rg_strength += 50; rg_militancy += 0.05; communist_strength += 20; communist_dissent -= 20; radicalisation += 0.1; workers_psi += 20; veterans_psi += 20
+on-arrival: para_resources -= rg_militarisation_cost; rg_investment += 1; rg_strength += 200; rg_militancy += 0.05; communist_strength += 20; communist_dissent -= 20; radicalisation += 0.1; workers_psi += 20; veterans_psi += 20
 
 We continue funding the Red Guards, who begin recruitment of more members and are able to acquire more effective weaponry.
 
