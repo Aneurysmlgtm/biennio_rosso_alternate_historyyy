@@ -35,7 +35,7 @@ Lower-income tax rates: [+ lower_tax_rates : taxation +]
 subtitle: This does not change overall revenue.
 choose-if: lower_tax_rates >= -5 and upper_tax_rates <= 5
 unavailable-subtitle: [? if lower_tax_rates < -5 : Lower-class tax rates are too low to cut anymore. ?] [? if upper_tax_rates > 5 : Upper-class tax rates are too high to increase. ?]
-on-arrival: Q.workers_psi += 20; Q.upper_tax_rates += 1; Q.lower_tax_rates -= 1; Q.capital_strike_progress += 1; Q.psri_relation += 20; Q.socialist_sentiment += 5;
+on-arrival: workers_psi += 20; upper_tax_rates += 1; lower_tax_rates -= 1; capital_strike_progress += 1; psri_relation += 20; socialist_sentiment += 5;
 
 Making the tax system more progressive is popular among our base, but it upsets our <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> coalition partners, as well as our minimal number of <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> voters.
 
@@ -43,7 +43,7 @@ Making the tax system more progressive is popular among our base, but it upsets 
 subtitle: +2 Budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5
-on-arrival: Q.upper_tax_rates += 1; Q.capital_strike_progress += 1; Q.workers_psi += 20; Q.budget += 2; Q.inflation -= 1; Q.psri_relation += 20;
+on-arrival: upper_tax_rates += 1; capital_strike_progress += 1; workers_psi += 20; budget += 2; inflation -= 1; psri_relation += 20;
 
 Raising taxes on the rich is popular among our base, but it alienates the bourgeoisie. Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
@@ -51,7 +51,7 @@ Raising taxes on the rich is popular among our base, but it alienates the bourge
 subtitle: -2 Budget [? if budget < 2 and liberal_budget_accepted :- This will put us into a deficit! ?]
 unavailable-subtitle: [? if upper_tax_rates < -5 or lower_tax_rates < -5 : Tax rates are already too low. ?][? if national_economic_recovery and budget < 2 : Not enough budget. (Need 2) ?]
 choose-if: upper_tax_rates >= -5 and lower_tax_rates >= -5 and (not national_economic_recovery or budget > 1)
-on-arrival: Q.budget -= 2; Q.upper_tax_rates -= 1; Q.lower_tax_rates -= 1; Q.middle_class_psi += 20; Q.industrialists_psi += 20; Q.workers_psi += 20; Q.ldr_relation += 20; Q.ds_relation += 20; Q.ul_relation += 20; Q.economic_growth += 1; Q.unemployment -= 1; Q.ldr_moderates += 1; Q.ds_left += 1; Q.ul_giolitti += 1;
+on-arrival: budget -= 2; upper_tax_rates -= 1; lower_tax_rates -= 1; middle_class_psi += 20; industrialists_psi += 20; workers_psi += 20; ldr_relation += 20; ds_relation += 20; ul_relation += 20; economic_growth += 1; unemployment -= 1; ldr_moderates += 1; ds_left += 1; ul_giolitti += 1;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Cutting taxes benefits most the rich and middle-class, who pay more taxes than the working class. Our coalition partners are happy at our orthodox economic course.
@@ -62,7 +62,7 @@ Cutting taxes benefits most the rich and middle-class, who pay more taxes than t
 subtitle: +3 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5 and lower_tax_rates <= 5
-on-arrival: Q.budget += 3; Q.lower_tax_rates += 1; Q.upper_tax_rates += 1; Q.capital_strike_progress += 1; Q.inflation -= 1; Q.psri_relation -= 20;
+on-arrival: budget += 3; lower_tax_rates += 1; upper_tax_rates += 1; capital_strike_progress += 1; inflation -= 1; psri_relation -= 20;
 
 Raising taxes hurts our support among all those who pay taxes. [? if centre_left_coalition : However, our coalition partners are more supportive of the idea of "shared sacrifice" than simply taxing the rich. ?] Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
@@ -70,7 +70,7 @@ Raising taxes hurts our support among all those who pay taxes. [? if centre_left
 title: Lower taxes on the rich, while increasing consumption taxes (which affect the working class more).
 subtitle: This does not change overall revenue. [? if upper_tax_rates < -5 : Upper tax rates are too low to cut anymore. ?] [? if lower_tax_rates > 5 : Lower tax rates are too high to increase. ?]
 choose-if: lower_tax_rates <= 5 and upper_tax_rates >= -5
-on-arrival: Q.middle_class_psi += 20; Q.industrialists_psi += 20; Q.upper_tax_rates -= 1; Q.lower_tax_rates += 1; Q.capital_strike_progress -= 1; Q.ldr_relation += 20; Q.ul_relation += 20; Q.ldr_moderates += 1;
+on-arrival: middle_class_psi += 20; industrialists_psi += 20; upper_tax_rates -= 1; lower_tax_rates += 1; capital_strike_progress -= 1; ldr_relation += 20; ul_relation += 20; ldr_moderates += 1;
 
 Our regressive taxation policy benefits the rich while hurting the poor and working-class. [? if centre_left_coalition: Our <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> coalition partners approve of this orthodox economic course. ?][? if socialist_catholic_coalition :Our <span style="color:#87CEFA;">Catholic</span> coalition partner disapprove of this regressive tax policy. ?]
 
@@ -94,7 +94,7 @@ Current tariff level: [+ tariffs : taxation +]
 title: Raise tariffs on imports.
 subtitle: +2 Budget. Other countries will retaliate by increasing tariffs of their own. [? if tariffs > 5 : Further increases in tariffs will not raise revenue, as we have already nearly reached economic autarky. ?]
 choose-if: tariffs <= 5
-on-arrival: Q.tariffs += 1; Q.budget += 2; Q.rural_psi += 20; Q.middle_class_psi += 20; Q.capital_strike_progress += 1;
+on-arrival: tariffs += 1; budget += 2; rural_psi += 20; middle_class_psi += 20; capital_strike_progress += 1;
 
 Increasing tariffs leads to higher prices for basic goods, increasing inflation and hurting consumption among the working class. Retaliatory tariffs reduce the competitiveness of <span style="font-weight: bold; color:#008C45">It</span><span style="font-weight: bold; color:#CFCFCF">al</span><span style="font-weight: bold; color:#CD212A">ian</span> exports, raising unemployment among workers. They also lead to an atmosphere of international suspicion, reducing our ability to negotiate with other countries.
 
@@ -104,7 +104,7 @@ On the other hand, agricultural producers and some small businesses benefit from
 title: Lower tariffs on imports.
 choose-if: tariffs > -5 and (not national_economic_recovery or budget > 1)
 subtitle: -2 Budget. [? if tariffs <= -5 : There are no tariffs left to cut. ?] [? if budget < 2 and liberal_budget_accepted : This will put us into a deficit! ?] [? if national_economic_recovery and budget < 2 : Not enough budget. (Need 2) ?]
-on-arrival: Q.tariffs -= 1; Q.budget -= 2; Q.inflation -= 1;Q.economic_growth += 1;Q.unemployment -= 1; Q.workers_psi += 20; Q.veterans_psi += 20; Q.entente_relation += 5; Q.soviet_relation += 5; Q.balkan_relation += 5; Q.american_relation += 15;
+on-arrival: tariffs -= 1; budget -= 2; inflation -= 1;economic_growth += 1;unemployment -= 1; workers_psi += 20; veterans_psi += 20; entente_relation += 5; soviet_relation += 5; balkan_relation += 5; american_relation += 15;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Lowering tariffs helps workers and the urban poor by reducing prices for basic necessities. In addition, other countries are pleased by lower tariffs, and are more willing to negotiate on many issues.
@@ -133,7 +133,7 @@ subtitle: -1 Budget
 view-if: american_debts > 0
 choose-if: not national_economic_recovery or budget > 0
 unavailable-subtitle: Not enough budget. (Need 1)
-on-arrival: Q.american_debts -= 5; Q.budget -= 1; Q.american_relation += 5; Q.economic_growth += 1;
+on-arrival: american_debts -= 5; budget -= 1; american_relation += 5; economic_growth += 1;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Paying off some of our <span style="color:#002868">Amer</span><span style="color:#B31942">ican</span> debtors reaffirms our commitment to repaying <span style="color:#002868">Amer</span><span style="color:#B31942">ican</span> war debt while making negotiations in order to resolve those same debts smoother, restoring investment confidence.
@@ -144,7 +144,7 @@ subtitle: -1 Budget
 view-if: uk_debts > 0
 choose-if: not national_economic_recovery or budget > 0
 unavailable-subtitle: Not enough budget. (Need 1)
-on-arrival: Q.uk_debts -= 5; Q.budget -= 1; Q.entente_relation += 5; Q.economic_growth += 1;
+on-arrival: uk_debts -= 5; budget -= 1; entente_relation += 5; economic_growth += 1;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Paying off some of our <span style="color:#C8102E">British</span> debtors reaffirms our commitment to repaying <span style="color:#C8102E">British</span> war debt while making negotiations in order to resolve those same debts smoother, restoring investment confidence.
