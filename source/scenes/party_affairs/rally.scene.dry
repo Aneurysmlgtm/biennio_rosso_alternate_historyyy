@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: party_affairs
 view-if: rally_timer <= 0
-on-arrival: week_actions += 1; rally_timer = 4; disrupt_strength = ((fdc_strength*fdc_militancy) + (ard_strength*ard_militancy) + (abl_strength*abl_militancy))
+on-arrival: rally_timer = 1; disrupt_strength = ((fdc_strength*fdc_militancy) + (ard_strength*ard_militancy) + (abl_strength*abl_militancy))
 card-image: img/Rally.jpg
 go-to: main_rally; far_right_disrupt if prime_minister_party = "PNF" and (fdc_banned = 0 and ard_banned = 0 and abl_banned = 0) and not return_to_normalcy
 
@@ -28,7 +28,7 @@ go-to: main_rally
 The <span style="color:#c2352b">Red Guards</span> have successfully defended our rally, so it can go ahead as usual.
 
 @rg_protect_lose
-on-arrival: workers_pnf += 3
+on-arrival: workers_pnf += 1
 
 Unfortunately, the <span style="color:#c2352b">Red Guards</span> were unable to hold back the far-right mob. The <span style="color:#3D3D3D;">fascists</span> have won this show of strength.
 
@@ -43,7 +43,7 @@ go-to: main_rally
 The <span style="color:#2F2F2F">Arditi</span> <span style="color:#3CB371">del</span> <span style="color:#ED2855">Popolo</span> have successfully defended our rally, so it can go ahead as usual.
 
 @adp_protect_lose
-on-arrival: workers_pnf += 3
+on-arrival: workers_pnf += 1
 
 Unfortunately, the <span style="color:#2F2F2F">Arditi</span> <span style="color:#3CB371">del</span> <span style="color:#ED2855">Popolo</span> were unable to hold back the far-right mob. The <span style="color:#3D3D3D;">fascists</span> have won this show of strength.
 
@@ -60,12 +60,12 @@ go-to: main_rally
 The <span style="color:#c2352b">Red Guards</span> and <span style="color:#2F2F2F">Arditi</span> <span style="color:#3CB371">del</span> <span style="color:#ED2855">Popolo</span> have successfully defended our rally, so it can go ahead as usual.
 
 @both_protect_lose
-on-arrival: workers_pnf += 3
+on-arrival: workers_pnf += 1
 
 Unfortunately, the <span style="color:#c2352b">Red Guards</span> and <span style="color:#2F2F2F">Arditi</span> <span style="color:#3CB371">del</span> <span style="color:#ED2855">Popolo</span> were unable to hold back the far-right mob. The <span style="color:#3D3D3D;">fascists</span> have won this show of strength.
 
 @cancel
-on-arrival: workers_pnf += 3
+on-arrival: workers_pnf += 1
 
 The far-right have won this show of strength.
 
@@ -85,17 +85,17 @@ Mass rallies are a common feature of social democratic life, especially in the l
 - @cancel_advisor_action
 
 @class_struggle
-on-arrival: workers_psi += 4*(1-dissent); veterans_psi += 3*(1-dissent) if communist_strength > reformist_strength; workers_psi += 4*(1-dissent) if nationalisation_progress > 0 or max_seize > 0; veterans_psi += 3*(1-dissent) if nationalisation_progress > 0; communist_strength += 5; communist_dissent -= 5; middle_class_psi -= 3; industrialists_psi -= 2; revolutionary_fervour += 3
+on-arrival: workers_psi += 20; veterans_psi += 20; communist_strength += 20; communist_dissent -= 20; revolutionary_fervour += 3
 
 Our message of class struggle appeals to the <span style="color:#8B0000">left</span>-wing of the working class, while potentially alienating the middle class. [? if nationalisation_progress > 0 : Our achievements in nationalisation have assisted our messaging. ?]
 
 @welfare
-on-arrival: veterans_psi += 3*(1-dissent); workers_psi += 3*(1-dissent) if welfare > 0; veterans_psi += 3*(1-dissent) if welfare > 0; veterans_psi += 4*(1-dissent) if welfare > 1; reformist_strength += 3; labour_strength += 4; reformist_dissent -= 3; labour_dissent -= 3;
+on-arrival: veterans_psi += 20; workers_psi += 20; reformist_strength += 20; labour_strength += 20; reformist_dissent -= 20; labour_dissent -= 20;
 
 The <span style="color:#FF6961">reformist</span> message appeals to the organized workers, whose benefits are the accomplishments of social democracy. [? if welfare > 1 : Our achievements in expanding welfare have made this message more effective. ?]
 
 @democracy
-on-arrival: democratisation += 1; republican_sentiment += 2*(1 - dissent); workers_psi += 4*(1-dissent) if democratisation >= 3; veterans_psi += 3*(1-dissent) if democratisation >= 3; socialist_sentiment += 1*(1 - dissent) if democratisation >= 3; middle_class_psi += 4*(1-dissent) if democratisation >= 3; republican_sentiment += 4*(1 - dissent) if democratisation >= 3; king_relation -= 3; king_relation -= 4 if democratisation >= 3; radicalisation -= 0.1; radicalisation += 0.05 if democratisation >= 3; republican_sentiment += 2 if king_event; socialist_sentiment += 2 if king_event; workers_psi += 3 if king_event;
+on-arrival: democratisation += 1; republican_sentiment += 5; workers_psi += 20; veterans_psi += 20; socialist_sentiment += 5; middle_class_psi += 20; king_relation -= 5; radicalisation -= 0.05 if democratisation >= 3;
 view-if: not king_abolished
 
 Our speakers rally against the corrupt system and rail against the monarchists and authoritarians who prop up its existence. [? if king_event : Our efforts are furthered by the current emergency imposed by the King, seeking to eliminate us. ?]
@@ -104,7 +104,7 @@ Our speakers rally against the corrupt system and rail against the monarchists a
 [? if democratisation >= 3 : Since we have consistently made democratisation a theme of our campaign, the workers are enthusiastic about our message. ?]
 
 @pacifism
-on-arrival: pacifism += 1; nationalist_sentiment -= 3*(1 - dissent); workers_psi += 4*(1 - dissent) if pacifism >= 3; veterans_psi += 3*(1-dissent) if pacifism >= 3; nationalist_sentiment -= 3*(1-dissent) if pacifism >= 3; middle_class_psi += 4*(1-dissent) if pacifism >= 3
+on-arrival: pacifism += 1; nationalist_sentiment -= 5; workers_psi += 20; veterans_psi += 20; nationalist_sentiment -= 5; middle_class_psi += 20
 
 Our speakers denounce the military establishment and all the spending entering that black hole. Some adventurous speakers question the responsibility of the military elites in organizing the Great War.
 
@@ -115,11 +115,11 @@ Our speakers denounce the military establishment and all the spending entering t
 view-if: not psi_in_government and economic_plan = 1 and pnf_in_government = 0
 choose-if: unemployment > 5 or economic_growth < 0 or national_economic_recovery 
 unavailable-subtitle: The economic crisis is largely over now, and the public is no longer interested in hearing about it.
-on-arrival: workers_psi += 4*(1-dissent); veterans_psi += 3*(1-dissent); middle_class_psi += 1*(1-dissent); ppi_relation -= 4*(1-dissent); ldr_relation -= 4*(1-dissent); ul_relation -= 4*(1-dissent); ds_relation -= 4*(1-dissent); workers_psi += 1*(1-dissent) if unemployment > 10; veterans_psi += 3*(1-dissent) if unemployment > 10;
+on-arrival: workers_psi += 20; veterans_psi += 20; middle_class_psi += 20;
 
 Our anti-government sentiment resonates with the workers and veterans, though the governing coalition doesn't seem the fondest of our message.
 
 @local
-on-arrival: workers_psi += 3*(1-dissent); middle_class_psi += 2*(1-dissent); rural_psi += 1*(1-dissent); veterans_psi += 2*(1-dissent);
+on-arrival: workers_psi += 20; middle_class_psi += 20; rural_psi += 20; veterans_psi += 20;
 
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.

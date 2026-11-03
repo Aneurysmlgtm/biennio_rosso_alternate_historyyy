@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 view-if: psi_in_government and finance_minister_party = psi_name and fiscal_policy_timer <= 0
 frequency: 500
-on-arrival: week_actions += 1; fiscal_policy_timer = 3;
+on-arrival: fiscal_policy_timer = 3;
 card-image: img/portraits/CostantinoLazzari.jpg
 go-to: fiscal_menu
 tags: govt_affairs
@@ -35,47 +35,7 @@ Lower-income tax rates: [+ lower_tax_rates : taxation +]
 subtitle: This does not change overall revenue.
 choose-if: lower_tax_rates >= -5 and upper_tax_rates <= 5
 unavailable-subtitle: [? if lower_tax_rates < -5 : Lower-class tax rates are too low to cut anymore. ?] [? if upper_tax_rates > 5 : Upper-class tax rates are too high to increase. ?]
-on-arrival: {!
-
-if (Q.in_unstable_coalition == 0) {
-    Q.workers_psi += 6*(1-Q.dissent); 
-    Q.middle_class_psi -= 3; 
-    Q.industrialists_psi -= 3;
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.workers_clc += 6*(1-Q.dissent); 
-    Q.middle_class_clc -= 3; 
-    Q.industrialists_clc -= 3;
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.workers_scc += 6*(1-Q.dissent); 
-    Q.middle_class_scc -= 3; 
-    Q.industrialists_scc -= 3;
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.coalition_dissent += 1;
-}
-
-Q.psri_relation += 5*(1-Q.dissent);
-Q.ldr_relation -= 4; 
-Q.upper_tax_rates += 1; 
-Q.lower_tax_rates -= 1; 
-Q.capital_strike_progress += 1; 
-
-if (Q.upper_tax_rates > 1) {
-    Q.capital_strike_progress += 1;
-}
-
-if (Q.upper_tax_rates > 3) {
-    Q.capital_strike_progress += 1;
-}
-
-Q.ldr_right += 0.2;
-Q.socialist_sentiment += 2;
-!}
+on-arrival: Q.workers_psi += 20; Q.upper_tax_rates += 1; Q.lower_tax_rates -= 1; Q.capital_strike_progress += 1; Q.psri_relation += 20; Q.socialist_sentiment += 5;
 
 Making the tax system more progressive is popular among our base, but it upsets our <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> coalition partners, as well as our minimal number of <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> voters.
 
@@ -83,66 +43,7 @@ Making the tax system more progressive is popular among our base, but it upsets 
 subtitle: +2 Budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5
-on-arrival: {!
-Q.upper_tax_rates += 1; 
-Q.capital_strike_progress += 1;
-if (Q.upper_tax_rates > 1) {
-    Q.capital_strike_progress += 1;
-}
-
-if (Q.upper_tax_rates > 3) {
-    Q.capital_strike_progress += 1;
-}
-
-if (Q.in_unstable_coalition == 0) {
-    Q.workers_psi += 4*(1-Q.dissent); 
-    Q.middle_class_psi -= 4; 
-    Q.industrialists_psi -= 4;
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.workers_clc += 4*(1-Q.dissent); 
-    Q.middle_class_clc -= 4; 
-    Q.industrialists_clc -= 4;
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.workers_scc += 4*(1-Q.dissent); 
-    Q.middle_class_scc -= 4; 
-    Q.industrialists_scc -= 4;
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.coalition_dissent += 1;
-}
-
-if (Q.capital_strike_progress >= 5) {
-    Q.coalition_dissent += 1;
-}
-
-Q.budget += 2; 
-Q.ldr_relation -= 4; 
-
-Q.inflation -= 0.4;
-Q.economic_growth -= 0.4;
-Q.unemployment += 0.6;
-
-if (Q.budget > 0) {
-    Q.inflation -= 0.2;
-}
-
-if (Q.economic_growth > 0) {
-    Q.economic_growth -= 0.1;
-}
-
-if (Q.unemployment < 8) {
-    Q.unemployment += 0.1;
-}
-
-Q.psri_relation += 5*(1-Q.dissent);
-
-Q.ldr_moderates -= 0.2;
-!}
+on-arrival: Q.upper_tax_rates += 1; Q.capital_strike_progress += 1; Q.workers_psi += 20; Q.budget += 2; Q.inflation -= 1; Q.psri_relation += 20;
 
 Raising taxes on the rich is popular among our base, but it alienates the bourgeoisie. Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
@@ -150,63 +51,7 @@ Raising taxes on the rich is popular among our base, but it alienates the bourge
 subtitle: -2 Budget [? if budget < 2 and liberal_budget_accepted :- This will put us into a deficit! ?]
 unavailable-subtitle: [? if upper_tax_rates < -5 or lower_tax_rates < -5 : Tax rates are already too low. ?][? if national_economic_recovery and budget < 2 : Not enough budget. (Need 2) ?]
 choose-if: upper_tax_rates >= -5 and lower_tax_rates >= -5 and (not national_economic_recovery or budget > 1)
-on-arrival: {!
-Q.budget -= 2; 
-Q.upper_tax_rates -= 1; 
-Q.lower_tax_rates -= 1;
-
-if (Q.in_unstable_coalition == 0) {
-    Q.middle_class_psi += 5*(1-Q.dissent); 
-    Q.industrialists_psi += 4*(1-Q.dissent); 
-    Q.workers_psi += 3*(1-Q.dissent);
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.middle_class_clc += 5*(1-Q.dissent); 
-    Q.industrialists_clc += 4*(1-Q.dissent); 
-    Q.workers_clc += 3*(1-Q.dissent);
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.middle_class_scc += 5*(1-Q.dissent); 
-    Q.industrialists_scc += 4*(1-Q.dissent); 
-    Q.workers_scc += 3*(1-Q.dissent);
-}
-
-Q.ldr_relation += 5*(1-Q.dissent); 
-Q.ds_relation += 3*(1-Q.dissent); 
-Q.ul_relation += 5*(1-Q.dissent); 
-
-Q.inflation += 0.4;
-Q.economic_growth += 0.4;
-Q.unemployment -= 0.6;
-
-if (Q.budget < 0) {
-    Q.inflation += 0.1;
-}
-
-if (Q.economic_growth < 0) {
-    Q.economic_growth += 0.1;
-}
-
-if (Q.unemployment > 8) {
-    Q.unemployment -= 0.1;
-}
-
-if (Q.upper_tax_rates < 0) {
-    Q.capital_strike_progress -= 1;
-}
-
-if (Q.budget < 0 && Q.liberal_budget_accepted == 1) {
-    Q.ldr_promise_failed = 1; 
-}
-
-Q.psri_relation += 3*(1-Q.dissent);
-
-Q.ldr_moderates += 0.2;
-Q.ds_left += 0.2;
-Q.ul_giolitti += 0.3;
-!}
+on-arrival: Q.budget -= 2; Q.upper_tax_rates -= 1; Q.lower_tax_rates -= 1; Q.middle_class_psi += 20; Q.industrialists_psi += 20; Q.workers_psi += 20; Q.ldr_relation += 20; Q.ds_relation += 20; Q.ul_relation += 20; Q.economic_growth += 1; Q.unemployment -= 1; Q.ldr_moderates += 1; Q.ds_left += 1; Q.ul_giolitti += 1;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Cutting taxes benefits most the rich and middle-class, who pay more taxes than the working class. Our coalition partners are happy at our orthodox economic course.
@@ -217,68 +62,7 @@ Cutting taxes benefits most the rich and middle-class, who pay more taxes than t
 subtitle: +3 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5 and lower_tax_rates <= 5
-on-arrival: {!
-Q.budget += 3; 
-
-if (Q.in_unstable_coalition == 0) {
-    Q.middle_class_psi -= 4*(1-Q.dissent); 
-    Q.industrialists_psi -= 4*(1-Q.dissent); 
-    Q.workers_psi -= 3*(1-Q.dissent); 
-    Q.rural_psi -= 3*(1-Q.dissent);
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.middle_class_clc -= 4*(1-Q.dissent); 
-    Q.industrialists_clc -= 4*(1-Q.dissent); 
-    Q.workers_clc -= 3*(1-Q.dissent); 
-    Q.rural_clc -= 3*(1-Q.dissent);
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.middle_class_scc -= 4*(1-Q.dissent); 
-    Q.industrialists_scc -= 4*(1-Q.dissent); 
-    Q.workers_scc -= 3*(1-Q.dissent); 
-    Q.rural_scc -= 3*(1-Q.dissent);
-}
-
-Q.lower_tax_rates += 1;
-Q.upper_tax_rates += 1; 
-
-if (Q.upper_tax_rates > 1) {
-    Q.capital_strike_progress += 1;
-}
-
-if (Q.upper_tax_rates > 3) {
-    Q.capital_strike_progress += 1;
-} 
-
-if (Q.lower_tax_rates > 1) {
-    workers_psi -= 5*(1-Q.dissent); 
-}
-
-if (Q.lower_tax_rates > 1 && Q.socialist_catholic_coalition == 1) {
-    Q.coalition_dissent += 1;
-    Q.ppi_left -= 0.2;
-}
-
-Q.inflation -= 0.6;
-Q.economic_growth -= 0.6;
-Q.unemployment += 0.9;
-
-if (Q.budget > 0) {
-    Q.inflation -= 0.3;
-}
-
-if (Q.economic_growth > 0) {
-    Q.economic_growth -= 0.2;
-}
-
-if (Q.unemployment < 8) {
-    Q.unemployment += 0.2;
-}
-
-Q.psri_relation -= 5*(1-Q.dissent);
-!}
+on-arrival: Q.budget += 3; Q.lower_tax_rates += 1; Q.upper_tax_rates += 1; Q.capital_strike_progress += 1; Q.inflation -= 1; Q.psri_relation -= 20;
 
 Raising taxes hurts our support among all those who pay taxes. [? if centre_left_coalition : However, our coalition partners are more supportive of the idea of "shared sacrifice" than simply taxing the rich. ?] Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
@@ -286,63 +70,9 @@ Raising taxes hurts our support among all those who pay taxes. [? if centre_left
 title: Lower taxes on the rich, while increasing consumption taxes (which affect the working class more).
 subtitle: This does not change overall revenue. [? if upper_tax_rates < -5 : Upper tax rates are too low to cut anymore. ?] [? if lower_tax_rates > 5 : Lower tax rates are too high to increase. ?]
 choose-if: lower_tax_rates <= 5 and upper_tax_rates >= -5
-on-arrival: {!
+on-arrival: Q.middle_class_psi += 20; Q.industrialists_psi += 20; Q.upper_tax_rates -= 1; Q.lower_tax_rates += 1; Q.capital_strike_progress -= 1; Q.ldr_relation += 20; Q.ul_relation += 20; Q.ldr_moderates += 1;
 
-if (Q.in_unstable_coalition == 0) {
-    Q.workers_psi -= 6*(1-Q.dissent); 
-    Q.middle_class_psi += 5*(1-Q.dissent); 
-    Q.industrialists_psi += 4*(1-Q.dissent);
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.workers_clc -= 6*(1-Q.dissent); 
-    Q.middle_class_clc += 5*(1-Q.dissent); 
-    Q.industrialists_clc += 4*(1-Q.dissent);
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.workers_scc -= 6*(1-Q.dissent); 
-    Q.middle_class_scc += 5*(1-Q.dissent); 
-    Q.industrialists_scc += 4*(1-Q.dissent);
-}
-
-if (Q.centre_left_coalition == 1 && Q.coalition_dissent > 0) {
-    Q.coalition_dissent -= 1;
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.coalition_dissent += 1;
-}
-
-Q.upper_tax_rates -= 1; 
-Q.lower_tax_rates += 1; 
-
-if (Q.lower_tax_rates >= 2) {
-    if (Q.in_unstable_coalition == 0) {
-        Q.workers_psi -= 5*(1-Q.dissent);
-    }
-    if (Q.centre_left_coalition == 1) {
-        Q.workers_clc -= 5*(1-Q.dissent);
-    }
-    if (Q.socialist_catholic_coalition == 1) {
-        Q.workers_scc -= 5*(1-Q.dissent);
-    }
-}
-
-if (Q.upper_tax_rates < 0) {
-    Q.capital_strike_progress -= 1; 
-}
-
-Q.psri_relation -= 5*(1-Q.dissent);
-Q.ppi_relation -= 3*(1-Q.dissent);
-Q.ldr_relation += 5*(1-Q.dissent); 
-Q.ul_relation += 4*(1-Q.dissent); 
-
-Q.ppi_left -= 0.1;
-Q.ldr_moderates += 0.1;
-!}
-
-Our regressive taxation policy benefits the rich while hurting the poor and working-class. [? if centre_left_coalition :Our <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> coalition partners approve of this orthodox economic course. ?][? if socialist_catholic_coalition :Our <span style="color:#87CEFA;">Catholic</span> coalition partner disapprove of this regressive tax policy. ?]
+Our regressive taxation policy benefits the rich while hurting the poor and working-class. [? if centre_left_coalition: Our <span style="color:#0047AB;">bou</span><span style="color:#FFD700;">rge</span><span style="color:#1E99C5;">ois</span> coalition partners approve of this orthodox economic course. ?][? if socialist_catholic_coalition :Our <span style="color:#87CEFA;">Catholic</span> coalition partner disapprove of this regressive tax policy. ?]
 
 
 @tariffs
@@ -364,60 +94,7 @@ Current tariff level: [+ tariffs : taxation +]
 title: Raise tariffs on imports.
 subtitle: +2 Budget. Other countries will retaliate by increasing tariffs of their own. [? if tariffs > 5 : Further increases in tariffs will not raise revenue, as we have already nearly reached economic autarky. ?]
 choose-if: tariffs <= 5
-on-arrival: {!
-Q.tariffs += 1; 
-Q.budget += 2;
-
-Q.inflation += 0.4;
-Q.economic_growth -= 0.4;
-Q.unemployment += 0.6;
-
-if (Q.budget > 0) {
-    Q.inflation -= 0.2;
-}
-
-if (Q.economic_growth > 0) {
-    Q.economic_growth -= 0.1;
-}
-
-if (Q.unemployment < 8) {
-    Q.unemployment += 0.1;
-}
-
-if (Q.in_unstable_coalition == 0) {
-    Q.workers_psi -= 5*(1-Q.dissent); 
-    Q.veterans_psi -= 5*(1-Q.dissent); 
-    Q.rural_psi += 3*(1-Q.dissent); 
-    Q.middle_class_psi += 3*(1-Q.dissent);
-}
-
-if (Q.centre_left_coalition == 1) {
-    Q.workers_clc -= 5*(1-Q.dissent); 
-    Q.veterans_clc -= 5*(1-Q.dissent); 
-    Q.rural_clc += 3*(1-Q.dissent); 
-    Q.middle_class_clc += 3*(1-Q.dissent);
-}
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.workers_scc -= 5*(1-Q.dissent); 
-    Q.veterans_scc -= 5*(1-Q.dissent); 
-    Q.rural_scc += 3*(1-Q.dissent); 
-    Q.middle_class_scc += 3*(1-Q.dissent);
-}
-
-Q.ldr_relation -= 5; 
-Q.ul_relation -= 2; 
-
-if (Q.tariffs >= 3) {
-    Q.capital_strike_progress += 1;
-}
-
-Q.entente_relation -= 1; 
-Q.soviet_relation -= 1;
-Q.balkan_relation -= 1;
-
-Q.ldr_moderates -= 0.2;
-!}
+on-arrival: Q.tariffs += 1; Q.budget += 2; Q.rural_psi += 20; Q.middle_class_psi += 20; Q.capital_strike_progress += 1;
 
 Increasing tariffs leads to higher prices for basic goods, increasing inflation and hurting consumption among the working class. Retaliatory tariffs reduce the competitiveness of <span style="font-weight: bold; color:#008C45">It</span><span style="font-weight: bold; color:#CFCFCF">al</span><span style="font-weight: bold; color:#CD212A">ian</span> exports, raising unemployment among workers. They also lead to an atmosphere of international suspicion, reducing our ability to negotiate with other countries.
 
@@ -427,56 +104,7 @@ On the other hand, agricultural producers and some small businesses benefit from
 title: Lower tariffs on imports.
 choose-if: tariffs > -5 and (not national_economic_recovery or budget > 1)
 subtitle: -2 Budget. [? if tariffs <= -5 : There are no tariffs left to cut. ?] [? if budget < 2 and liberal_budget_accepted : This will put us into a deficit! ?] [? if national_economic_recovery and budget < 2 : Not enough budget. (Need 2) ?]
-on-arrival: {!
-Q.tariffs -= 1; 
-Q.budget -= 2; 
-
-Q.inflation -= 0.4;
-Q.economic_growth += 0.4;
-Q.unemployment -= 0.6;
-
-if (Q.budget < 0) {
-    Q.inflation += 0.1;
-}
-
-if (Q.economic_growth < 0) {
-    Q.economic_growth += 0.1;
-}
-
-if (Q.unemployment > 8) {
-    Q.unemployment -= 0.1;
-};
-
-if (Q.in_unstable_coalition == 0) {
-    Q.workers_psi += 4*(1-Q.dissent); 
-    Q.veterans_psi += 4*(1-Q.dissent); 
-    Q.rural_psi -= 5*(1-Q.dissent); 
-    Q.middle_class_psi -= 3*(1-Q.dissent);
-} 
-
-if (Q.centre_left_coalition == 1) {
-    Q.workers_clc += 4*(1-Q.dissent); 
-    Q.veterans_clc += 4*(1-Q.dissent); 
-    Q.rural_clc -= 5*(1-Q.dissent); 
-    Q.middle_class_clc -= 3*(1-Q.dissent);
-} 
-
-if (Q.socialist_catholic_coalition == 1) {
-    Q.workers_scc += 4*(1-Q.dissent); 
-    Q.veterans_scc += 4*(1-Q.dissent); 
-    Q.rural_scc -= 5*(1-Q.dissent); 
-    Q.middle_class_scc -= 3*(1-Q.dissent);
-} 
-
-Q.entente_relation += 1; 
-Q.soviet_relation += 1; 
-Q.balkan_relation += 1;
-Q.american_relation += 1;
-
-if (Q.budget < 0 && Q.liberal_budget_accepted == 1) {
-    Q.ldr_promise_failed = 1;
-}
-!}
+on-arrival: Q.tariffs -= 1; Q.budget -= 2; Q.inflation -= 1;Q.economic_growth += 1;Q.unemployment -= 1; Q.workers_psi += 20; Q.veterans_psi += 20; Q.entente_relation += 5; Q.soviet_relation += 5; Q.balkan_relation += 5; Q.american_relation += 15;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Lowering tariffs helps workers and the urban poor by reducing prices for basic necessities. In addition, other countries are pleased by lower tariffs, and are more willing to negotiate on many issues.
@@ -505,27 +133,7 @@ subtitle: -1 Budget
 view-if: american_debts > 0
 choose-if: not national_economic_recovery or budget > 0
 unavailable-subtitle: Not enough budget. (Need 1)
-on-arrival: {!
-Q.american_debts -= 1; 
-Q.budget -= 1;
-Q.american_relation += 2;
-
-if (Q.budget < 0 && Q.liberal_budget_accepted == 1) {
-    Q.ldr_promise_failed = 1;
-}
-
-Q.inflation += 0.2;
-Q.economic_growth += 0.2;
-
-if (Q.budget < 0) {
-    Q.inflation += 0.1;
-}
-
-if (Q.economic_growth < 0) {
-    Q.economic_growth += 0.1;
-}
-
-!}
+on-arrival: Q.american_debts -= 5; Q.budget -= 1; Q.american_relation += 5; Q.economic_growth += 1;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Paying off some of our <span style="color:#002868">Amer</span><span style="color:#B31942">ican</span> debtors reaffirms our commitment to repaying <span style="color:#002868">Amer</span><span style="color:#B31942">ican</span> war debt while making negotiations in order to resolve those same debts smoother, restoring investment confidence.
@@ -536,26 +144,7 @@ subtitle: -1 Budget
 view-if: uk_debts > 0
 choose-if: not national_economic_recovery or budget > 0
 unavailable-subtitle: Not enough budget. (Need 1)
-on-arrival: {!
-Q.uk_debts -= 1; 
-Q.budget -= 1;
-Q.entente_relation += 2;
-
-if (Q.budget < 0 && Q.liberal_budget_accepted == 1) {
-    Q.ldr_promise_failed = 1;
-}
-
-Q.inflation += 0.2;
-Q.economic_growth += 0.2;
-
-if (Q.budget < 0) {
-    Q.inflation += 0.1;
-}
-
-if (Q.economic_growth < 0) {
-    Q.economic_growth += 0.1;
-}
-!}
+on-arrival: Q.uk_debts -= 5; Q.budget -= 1; Q.entente_relation += 5; Q.economic_growth += 1;
 go-to: ldr_promise_vonc if ldr_promise_failed = 1
 
 Paying off some of our <span style="color:#C8102E">British</span> debtors reaffirms our commitment to repaying <span style="color:#C8102E">British</span> war debt while making negotiations in order to resolve those same debts smoother, restoring investment confidence.
