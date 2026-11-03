@@ -104,7 +104,7 @@ Our speakers rally against the corrupt system and rail against the monarchists a
 [? if democratisation >= 3 : Since we have consistently made democratisation a theme of our campaign, the workers are enthusiastic about our message. ?]
 
 @pacifism
-on-arrival: pacifism += 1; nationalist_sentiment -= 5; workers_psi += 20; veterans_psi += 20; nationalist_sentiment -= 5; middle_class_psi += 20
+on-arrival: pacifism += 1; nationalist_sentiment -= 5; workers_psi += 20; veterans_psi += 20; middle_class_psi += 20
 
 Our speakers denounce the military establishment and all the spending entering that black hole. Some adventurous speakers question the responsibility of the military elites in organizing the Great War.
 
