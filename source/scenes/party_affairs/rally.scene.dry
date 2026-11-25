@@ -43,7 +43,7 @@ go-to: main_rally
 The <span style="color:#2F2F2F">Arditi</span> <span style="color:#3CB371">del</span> <span style="color:#ED2855">Popolo</span> have successfully defended our rally, so it can go ahead as usual.
 
 @adp_protect_lose
-oon-arrival: workers_pnf += 3
+on-arrival: workers_pnf += 3
 
 Unfortunately, the <span style="color:#2F2F2F">Arditi</span> <span style="color:#3CB371">del</span> <span style="color:#ED2855">Popolo</span> were unable to hold back the far-right mob. The <span style="color:#3D3D3D;">fascists</span> have won this show of strength.
 
