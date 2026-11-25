@@ -1,7 +1,7 @@
 title: Fundraising
 new-page: true
 view-if: fundraising_timer <= 0 and (not historical_mode)
-on-arrival: fundraising_timer = 3
+on-arrival: fundraising_timer = 1; week_actions += 1
 frequency: 500
 is-card: true
 card-image: img/Fundraising.jpg
@@ -16,21 +16,21 @@ For better or for worse, the party cannot exist without money.
 - @increase: Increase dues.
 
 @maintain
-subtitle: [+ dues + 10 +] resources gained.
-on-arrival: resources = resources + dues + 10;
+subtitle: [+ dues +] resources gained.
+on-arrival: resources += dues;
 
 We maintain our current dues.
 
 @reduce
-subtitle: [+ dues + 9 +] resources gained.
+subtitle: [+ dues - 1 +] resources gained.
 choose-if: dues > 1
-on-arrival: dues -= 1; resources = resources + dues + 10; communist_dissent -= 20; maximalist_dissent -= 20; reformist_dissent -= 20; labour_dissent -= 20; syndicalist_dissent -= 20 if syndicalist_active
+on-arrival: dues -= 1; resources += dues; communist_dissent -= 8; maximalist_dissent -= 8; reformist_dissent -= 8; labour_dissent -= 8; syndicalist_dissent -= 8 if syndicalist_active
 
 Our current members appreciate this, but no one decides to join a party because of the low dues.
 
 @increase
-subtitle: [+ dues + 11 +] resources gained. [? if unemployment >= 15 : Given the present economic situation, this may be painful. ?][? if dues >= 4 : Dues are already rather high; increasing them might reduce our membership. ?]
-on-arrival: dues += 1; resources = resources + dues + 10
+subtitle: [+ dues + 1 +] resources gained. [? if unemployment >= 15 : Given the present economic situation, this may be painful. ?][? if dues >= 4 : Dues are already rather high; increasing them might reduce our membership. ?]
+on-arrival: dues += 1; resources += dues; workers_psi -= 3; veterans_psi -= 3; workers_psi -= 10 if unemployment >= 15; veterans_psi -= 10 if unemployment >= 15; workers_psi -= 3*dues if dues >= 5; veterans_psi -= 3*dues if dues >= 5
 view-if: dues <= 4
 
 Our members grumble at this, and some of the less committed members leave. But now, we have access to additional resources. 
