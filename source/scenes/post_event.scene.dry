@@ -285,7 +285,7 @@ if (Q.dissent < 0) {
 }
 
 // 1. update dates
-if (Q.week_actions >= 4) {
+if (Q.week_actions >= 3) {
     Q.time += 1;
     Q.week_actions = 0;
     Q.week += 2;
